@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using BotDetect.Web.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using WebAppThirdAuth.Models;
 
@@ -20,6 +21,20 @@ namespace WebAppThirdAuth.Controllers
             ViewData["Message"] = "Your application description page.";
             var user = User;
             return View();
+        }
+
+        [HttpGet]
+        public IActionResult Captcha()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [CaptchaValidation("CaptchaCode", "ExampleCaptcha", "Incorrect!")]
+        public IActionResult Captcha(ExampleModel model)
+        {
+            MvcCaptcha.ResetCaptcha("ExampleCaptcha");
+            return View(model);
         }
 
         public IActionResult Contact()

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Captcha";
+}
+<h2>Captcha</h2>
+@using BotDetect.Web.Mvc
+@model WebAppThirdAuth.Models.ExampleModel
+@section header {
+    <link href="@BotDetect.Web.CaptchaUrls.Absolute.LayoutStyleSheetUrl" rel="stylesheet" type="text/css" />
+}
+
+<form asp-controller="Home" asp-action="Captcha" method="post">
+    <fieldset>
+        <legend>ASP.NET MVC CAPTCHA Validation</legend>
+        <div>
+            <label asp-for="CaptchaCode"> Retype the code from the picture:</label>
+            @{
+                var exampleCaptcha = new MvcCaptcha("ExampleCaptcha") { UserInputID = "CaptchaCode" };
+            }
+            <captcha mvc-captcha="exampleCaptcha" />
+            <div class="actions">
+                <input asp-for="CaptchaCode" />
+                <input type="submit" value="Validate" />
+                <span asp-validation-for="CaptchaCode"></span>
+                @if (ViewContext.IsPost() && ViewData.ModelState.IsValid)
+                {
+                    <span class="correct">Correct!</span>
+                }
+            </div>
+        </div>
+    </fieldset>
+</form>
