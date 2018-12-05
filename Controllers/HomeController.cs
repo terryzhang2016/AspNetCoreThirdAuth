@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BotDetect.Web.Mvc;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using WebAppThirdAuth.Models;
 using WebAppThirdAuth.Options;
@@ -14,12 +15,18 @@ namespace WebAppThirdAuth.Controllers
     public class HomeController : Controller
     {
         private readonly MyOptions _options;
-        public HomeController(IOptionsMonitor<MyOptions> optionsAccessor)
+        private readonly ILogger<HomeController> _logger;
+        public HomeController(
+            IOptionsMonitor<MyOptions> optionsAccessor,
+            ILogger<HomeController> logger)
         {
             _options = optionsAccessor.CurrentValue;
+            _logger = logger;
         }
         public IActionResult Index()
         {
+            _logger.LogInformation("Index page says hello");
+            _logger.LogError("Index page says error");
             return View();
         }
 
