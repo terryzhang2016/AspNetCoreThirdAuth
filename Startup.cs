@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OAuth;
+using WebAppThirdAuth.Options;
 
 namespace WebAppThirdAuth
 {
@@ -40,7 +41,7 @@ namespace WebAppThirdAuth
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            services.Configure<MyOptions>(Configuration);
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
@@ -100,12 +101,6 @@ namespace WebAppThirdAuth
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-
-
-                foreach (var r in routes.Routes)
-                {
-                    System.Diagnostics.Debug.WriteLine(r.ToString());
-                }
             });
         }
     }

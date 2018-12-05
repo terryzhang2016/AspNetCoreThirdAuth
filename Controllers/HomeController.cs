@@ -5,18 +5,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using BotDetect.Web.Mvc;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using WebAppThirdAuth.Models;
+using WebAppThirdAuth.Options;
 
 namespace WebAppThirdAuth.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly MyOptions _options;
+        public HomeController(IOptionsMonitor<MyOptions> optionsAccessor)
+        {
+            _options = optionsAccessor.CurrentValue;
+        }
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult About()
+        public async Task<IActionResult> About()
         {
             ViewData["Message"] = "Your application description page.";
             var user = User;
@@ -40,6 +47,7 @@ namespace WebAppThirdAuth.Controllers
         public IActionResult Contact()
         {
             ViewData["Message"] = "Your contact page.";
+            ViewData["Option1"] = _options.Option1;
 
             return View();
         }
