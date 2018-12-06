@@ -16,6 +16,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using WebAppThirdAuth.Options;
+using WebAppThirdAuth.Middlewares;
 
 namespace WebAppThirdAuth
 {
@@ -32,6 +33,7 @@ namespace WebAppThirdAuth
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddTest();
             services.AddMemoryCache(); // Adds a default in-memory 
 
             services.Configure<CookiePolicyOptions>(options =>
@@ -96,6 +98,8 @@ namespace WebAppThirdAuth
             app.UseAuthentication();
             //configure BotDetectCaptcha
             app.UseCaptcha(Configuration);
+            app.UseTest();
+            app.UseTestMiddleware();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
