@@ -4,7 +4,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace WebAppThirdAuth.Middlewares
@@ -24,7 +27,36 @@ namespace WebAppThirdAuth.Middlewares
         public async Task Invoke(HttpContext httpContext)
         {
             System.Diagnostics.Debug.WriteLine($"TestMiddleware call. {_testProvider.GetName()}");
-            await _next(httpContext);
+            var responseStream = httpContext.Response.Body;
+            var newBodyStream = new MemoryStream();
+            httpContext.Response.Body = newBodyStream;
+
+            try
+            {
+                await _next(httpContext);
+                newBodyStream.Seek(0, SeekOrigin.End);
+              
+                using(StreamWriter sw = new StreamWriter(newBodyStream))
+                {
+                    sw.WriteLine("<!--test-->");
+                }
+
+                // copy back our buffer to the response stream
+                newBodyStream.Seek(0, SeekOrigin.Begin);
+                await newBodyStream.CopyToAsync(responseStream);
+        
+
+
+            }
+            catch (Exception e)
+            {
+
+            }
+            finally
+            {
+                httpContext.Response.Body = responseStream;
+                newBodyStream.Dispose();
+            }
         }
     }
 
