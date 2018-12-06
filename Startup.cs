@@ -80,8 +80,7 @@ namespace WebAppThirdAuth
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseTestMiddleware();
-            app.UseTest();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -98,6 +97,8 @@ namespace WebAppThirdAuth
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+            app.UseTestMiddleware();
+            app.UseTest();
             //configure BotDetectCaptcha
             app.UseCaptcha(Configuration);
             app.UseMvc(routes =>

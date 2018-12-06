@@ -8,6 +8,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace WebAppThirdAuth.Middlewares
@@ -26,37 +27,8 @@ namespace WebAppThirdAuth.Middlewares
         // IMyScopedService is injected into Invoke
         public async Task Invoke(HttpContext httpContext)
         {
-            System.Diagnostics.Debug.WriteLine($"TestMiddleware call. {_testProvider.GetName()}");
-            var responseStream = httpContext.Response.Body;
-            var newBodyStream = new MemoryStream();
-            httpContext.Response.Body = newBodyStream;
-
-            try
-            {
-                await _next(httpContext);
-                newBodyStream.Seek(0, SeekOrigin.End);
-              
-                using(StreamWriter sw = new StreamWriter(newBodyStream))
-                {
-                    sw.WriteLine("<!--test-->");
-                }
-
-                // copy back our buffer to the response stream
-                newBodyStream.Seek(0, SeekOrigin.Begin);
-                await newBodyStream.CopyToAsync(responseStream);
-        
-
-
-            }
-            catch (Exception e)
-            {
-
-            }
-            finally
-            {
-                httpContext.Response.Body = responseStream;
-                newBodyStream.Dispose();
-            }
+            httpContext.Response.Headers["X-My-Custom-Header"] = "So cool";
+            await _next(httpContext);
         }
     }
 
