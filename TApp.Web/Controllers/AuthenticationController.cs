@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Mvc.Client.Extensions;
 
-namespace WebAppThirdAuth.Controllers
+namespace TApp.Web.Controllers
 {
     public class AuthenticationController : Controller
     {

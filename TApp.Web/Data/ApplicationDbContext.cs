@@ -4,7 +4,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace WebAppThirdAuth.Data
+namespace TApp.Web.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {

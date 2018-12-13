@@ -7,10 +7,10 @@ using BotDetect.Web.Mvc;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using WebAppThirdAuth.Models;
-using WebAppThirdAuth.Options;
+using TApp.Web.Models;
+using TApp.Web.Options;
 
-namespace WebAppThirdAuth.Controllers
+namespace TApp.Web.Controllers
 {
     public class HomeController : Controller
     {

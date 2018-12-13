@@ -10,15 +10,15 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebAppThirdAuth.Data;
+using TApp.Web.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OAuth;
-using WebAppThirdAuth.Options;
-using WebAppThirdAuth.Middlewares;
+using TApp.Web.Options;
+using TApp.Web.Middlewares;
 
-namespace WebAppThirdAuth
+namespace TApp.Web
 {
     public class Startup
     {

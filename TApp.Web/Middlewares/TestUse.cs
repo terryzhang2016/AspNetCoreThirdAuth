@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebAppThirdAuth.Middlewares
+namespace TApp.Web.Middlewares
 {
     public static class TestUse
     {

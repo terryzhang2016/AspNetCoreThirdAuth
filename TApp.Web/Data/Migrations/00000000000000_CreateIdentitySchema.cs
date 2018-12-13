@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebAppThirdAuth.Data.Migrations
+namespace TApp.Web.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

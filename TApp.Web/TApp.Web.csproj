@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
-    <UserSecretsId>aspnet-WebAppThirdAuth-C8429B85-7D4B-4BFC-8B5B-5FA263A2D038</UserSecretsId>
+    <UserSecretsId>aspnet-TApp.Web-C8429B85-7D4B-4BFC-8B5B-5FA263A2D038</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

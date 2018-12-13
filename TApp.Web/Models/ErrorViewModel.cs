@@ -1,6 +1,6 @@
 using System;
 
-namespace WebAppThirdAuth.Models
+namespace TApp.Web.Models
 {
     public class ErrorViewModel
     {

@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebAppThirdAuth.Middlewares
+namespace TApp.Web.Middlewares
 {
     public class TestMiddleware
     {

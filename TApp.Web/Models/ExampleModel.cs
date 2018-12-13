@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebAppThirdAuth.Models
+namespace TApp.Web.Models
 {
     public class ExampleModel
     {
